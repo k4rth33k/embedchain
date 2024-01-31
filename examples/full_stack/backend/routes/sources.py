@@ -20,7 +20,7 @@ def add_sources():
             os.chdir(DB_DIRECTORY_OPEN_AI)
             api_key = APIKey.query.first().key
             os.environ["OPENAI_API_KEY"] = api_key
-            chat_bot = App()
+            chat_bot = App.from_config("/usr/src/app/backend/config.yaml")
         chat_bot.add(name, value)
         return make_response(jsonify(message="Sources added successfully"), 200)
     except Exception as e:

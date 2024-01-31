@@ -1,0 +1,13 @@
+llm:
+  provider: openai
+  config:
+    model: 'meta-llama/Llama-2-7b-hf'
+    top_p: 0.5
+    max_tokens: 150
+    # stream: true
+
+embedder:
+  provider: huggingface
+  config:
+    model: 'http://3.238.123.168:9000'
+

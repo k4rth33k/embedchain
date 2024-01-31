@@ -8,8 +8,16 @@ services:
       context: backend
       dockerfile: Dockerfile
     image: embedchain/backend
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app/backend
+      - /home/k4rth33k/Documents/rag_test.pdf:/root/rag_test.pdf
+      - /home/k4rth33k/Desktop/stuff/ST/rag_demo/embedchain/embedchain/llm/openai.py:/usr/local/lib/python3.11/site-packages/embedchain/llm/openai.py
+      - /home/k4rth33k/Desktop/stuff/ST/rag_demo/embedchain/embedchain/embedder/huggingface.py:/usr/local/lib/python3.11/site-packages/embedchain/embedder/huggingface.py
+    
+    network_mode: "host"
+    
 
   frontend:
     container_name: embedchain-frontend
@@ -18,7 +26,10 @@ services:
       context: frontend
       dockerfile: Dockerfile
     image: embedchain/frontend
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     depends_on:
       - "backend"
+    
+    network_mode: "host"
+    
